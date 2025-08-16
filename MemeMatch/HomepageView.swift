@@ -11,7 +11,7 @@ struct HomepageView: View {
                 .font(.largeTitle)
                 .bold()
             
-            // Show selected photo
+          
             if let image = selectedImage {
                 Image(uiImage: image)
                     .resizable()
@@ -26,7 +26,7 @@ struct HomepageView: View {
                     .overlay(Text("No Image Selected"))
             }
             
-            // Upload button
+          
             PhotosPicker("Upload Photo", selection: $selectedItem, matching: .images)
                 .buttonStyle(.borderedProminent)
                 .onChange(of: selectedItem) { _, newItem in
