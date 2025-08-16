@@ -11,7 +11,7 @@ import SwiftUI
 struct MemeMatchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomepageView()
         }
     }
 }
