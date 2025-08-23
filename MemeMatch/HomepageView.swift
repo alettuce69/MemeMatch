@@ -1,5 +1,7 @@
 import SwiftUI
 import PhotosUI
+import Vision
+import UIKit
 
 struct HomepageView: View {
     @State private var selectedItem: PhotosPickerItem? = nil
