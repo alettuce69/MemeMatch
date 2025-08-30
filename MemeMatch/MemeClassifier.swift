@@ -20,20 +20,25 @@ public class MemeClassifier {
         var memes: [MemeOption] = []
         
         
-        if features.smile > 0.25 && features.eyeOpenness > 0.08 {
-            memes.append(contentsOf: [
-                MemeOption(name: "Shocked", assetName: "shocked"),
+//        if features.smile > 0.00 && features.eyeOpenness > 0.00 {
+//            memes.append(contentsOf: [
+//                MemeOption(name: "Shocked", assetName: "shocked"),
             
-            ])
-        } else if features.neutrality > 0.6 {
-           
+//            ])
+          if features.neutrality > 100 {
+            
             memes.append(contentsOf: [
                 MemeOption(name: "Mr. Incredible", assetName: "incredible")
+            ])
+            
+        } else if features.smile < 0.0 && features.eyeOpenness < 0.00 {
+            memes.append(contentsOf: [
+                MemeOption(name: "Test", assetName: "mewing"),
             ])
         } else {
            
             memes.append(contentsOf: [
-                MemeOption(name: "Mewing", assetName: "mewing"),
+                MemeOption(name: "Mewing", assetName: "incredible"),
                 MemeOption(name: "Shrek", assetName: "shrek"),
         
             ])
