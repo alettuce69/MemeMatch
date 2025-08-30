@@ -33,8 +33,8 @@ public class MemeClassifier {
         } else {
            
             memes.append(contentsOf: [
-                MemeOption(name: "Crying Jordan", assetName: "mewing"),
-                MemeOption(name: "Wojak", assetName: "shrek"),
+                MemeOption(name: "Mewing", assetName: "mewing"),
+                MemeOption(name: "Shrek", assetName: "shrek"),
         
             ])
         }

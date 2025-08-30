@@ -106,7 +106,7 @@ struct MemeOverlayView: View {
         template.draw(in: CGRect(origin: .zero, size: tplSize))
         
         
-        let faceWidth = tplSize.width * 0.35
+        let faceWidth = tplSize.width * 0.5
         let faceHeight = faceWidth * (face.size.height / max(face.size.width, 1))
         
        
@@ -123,7 +123,7 @@ struct MemeOverlayView: View {
         circlePath.addClip()
         
        
-        face.draw(in: destRect, blendMode: .normal, alpha: 0.82)
+        face.draw(in: destRect, blendMode: .normal, alpha: 0.92)
         
         ctx?.restoreGState()
         
