@@ -20,26 +20,38 @@ public class MemeClassifier {
         var memes: [MemeOption] = []
         
         
-//        if features.smile > 0.00 && features.eyeOpenness > 0.00 {
-//            memes.append(contentsOf: [
-//                MemeOption(name: "Shocked", assetName: "shocked"),
-            
-//            ])
-          if features.neutrality > 100 {
-            
+        if features.smile < 0.006 {
+            memes.append(MemeOption(name: "Mr. Incredible", assetName: "incredible"))
+            memes.append(MemeOption(name: "Bad Luck Brian", assetName: "brian"))
+            memes.append(MemeOption(name: "Hide the Pain Harold", assetName: "harold"))
+        }
+        
+        
+        else if features.smile >= 0.006 && features.smile < 0.02 {
+            memes.append(MemeOption(name: "Kombucha Girl", assetName: "kombucha"))
+            memes.append(MemeOption(name: "Side-Eye Chloe", assetName: "chloe"))
+            memes.append(MemeOption(name: "Mewing", assetName: "mewing"))
+        }
+        
+    
+        else if features.smile >= 0.02 && features.smile < 0.03 {
+            memes.append(MemeOption(name: "Gigachad", assetName: "chad"))
+            memes.append(MemeOption(name: "The Rock Eyebrow", assetName: "rock"))
+        }
+        
+    
+        else if features.smile >= 0.03 {
+            memes.append(MemeOption(name: "Confused Nick Young", assetName: "nick"))
+        }
+        
+        
+        else if features.eyeOpenness > 0.055 {
+            memes.append(MemeOption(name: "Emotional Damage", assetName: "emotional"))
+        }
+        
+        else {
             memes.append(contentsOf: [
-                MemeOption(name: "Mr. Incredible", assetName: "incredible")
-            ])
-            
-        } else if features.smile < 0.0 && features.eyeOpenness < 0.00 {
-            memes.append(contentsOf: [
-                MemeOption(name: "Test", assetName: "mewing"),
-            ])
-        } else {
-           
-            memes.append(contentsOf: [
-                MemeOption(name: "Mewing", assetName: "incredible"),
-                MemeOption(name: "Shrek", assetName: "shrek"),
+                MemeOption(name: "Disgusted Gordon Ramsay", assetName: "gordon"),
         
             ])
         }

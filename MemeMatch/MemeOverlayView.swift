@@ -51,10 +51,7 @@ struct MemeOverlayView: View {
                             }
                             .buttonStyle(.borderedProminent)
                             
-                            Button("Back") {
                             
-                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                            }
                         }
                     }
                     .padding(.vertical, 8)
@@ -106,12 +103,12 @@ struct MemeOverlayView: View {
         template.draw(in: CGRect(origin: .zero, size: tplSize))
         
         
-        let faceWidth = tplSize.width * 0.5
+        let faceWidth = tplSize.width * 0.45
         let faceHeight = faceWidth * (face.size.height / max(face.size.width, 1))
         
        
-        let centerX = tplSize.width / 2.0
-        let centerY = tplSize.height / 2.0
+        let centerX = tplSize.width * 0.52
+        let centerY = tplSize.height * 0.54
         
         let destRect = CGRect(x: centerX - faceWidth/2, y: centerY - faceHeight/2, width: faceWidth, height: faceHeight)
         
@@ -123,7 +120,7 @@ struct MemeOverlayView: View {
         circlePath.addClip()
         
        
-        face.draw(in: destRect, blendMode: .normal, alpha: 0.92)
+        face.draw(in: destRect, blendMode: .normal, alpha: 0.90)
         
         ctx?.restoreGState()
         
