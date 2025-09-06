@@ -17,6 +17,7 @@ struct MemeOverlayView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 22) {
+                
                 Text("Pick one to share")
                     .font(.headline)
                     .padding(.top, 8)

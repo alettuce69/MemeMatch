@@ -127,6 +127,7 @@ struct HomepageView: View {
                     self.navigateToMemes = false
                 }
             }
+            
         }
     }
 }
