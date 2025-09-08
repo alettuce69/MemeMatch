@@ -10,9 +10,33 @@
 		AC38A9CD2E5060D0001DE44F /* MemeMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		ACD5BC082E6EAD9E003C39A0 /* Exceptions for "MemeMatch" folder in "MemeMatch" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				.mlmodel,
+			);
+			target = AC38A9CC2E5060D0001DE44F /* MemeMatch */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		ACD5BC092E6EAD9E003C39A0 /* Exceptions for "MemeMatch" folder in "Compile Sources" phase from "MemeMatch" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = AC38A9C92E5060D0001DE44F /* Sources */;
+			membershipExceptions = (
+				.mlmodel,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		AC38A9CF2E5060D0001DE44F /* MemeMatch */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				ACD5BC082E6EAD9E003C39A0 /* Exceptions for "MemeMatch" folder in "MemeMatch" target */,
+				ACD5BC092E6EAD9E003C39A0 /* Exceptions for "MemeMatch" folder in "Compile Sources" phase from "MemeMatch" target */,
+			);
 			path = MemeMatch;
 			sourceTree = "<group>";
 		};
@@ -264,7 +288,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aletheus.MemeMatch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alethdsadadasdaeus.MemeMatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -292,7 +316,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aletheus.MemeMatch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alethdsadadasdaeus.MemeMatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
