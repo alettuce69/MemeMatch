@@ -51,26 +51,9 @@ public class FaceAnalyzer {
             }
             
             let neutrality = max(0, 1 - smileScore)
-            let bbox = face.boundingBox
-            let imgW = CGFloat(cg.width)
-            let imgH = CGFloat(cg.height)
-            let cropRect = CGRect(
-                x: bbox.origin.x * imgW,
-                y: (1 - bbox.origin.y - bbox.height) * imgH,
-                width: bbox.width * imgW,
-                height: bbox.height * imgH
-            ).integral
-            
-            var croppedImage: UIImage? = nil
-            if let croppedCG = cg.cropping(to: cropRect) {
-                croppedImage = UIImage(cgImage: croppedCG, scale: image.scale, orientation: image.imageOrientation)
-                print("FaceAnalyzer: cropped face size: \(String(describing: croppedImage?.size))")
-            } else {
-                print("FaceAnalyzer: cropping failed for rect: \(cropRect)")
-            }
             
             let features = FaceFeatures(smile: smileScore, eyeOpenness: eyeScore, neutrality: neutrality)
-            completion(features, croppedImage, bbox)
+            completion(features, nil, nil)
             print(features)
         }
         
@@ -83,3 +66,4 @@ public class FaceAnalyzer {
         }
     }
 }
+    
