@@ -31,17 +31,24 @@ public class FaceCropper {
                 return
             }
             
-           
+        
             let boundingBox = firstFace.boundingBox
             let imgW = CGFloat(cgImage.width)
             let imgH = CGFloat(cgImage.height)
             
-            let faceRect = CGRect(
+
+            var faceRect = CGRect(
                 x: boundingBox.origin.x * imgW,
                 y: (1 - boundingBox.origin.y - boundingBox.height) * imgH,
                 width: boundingBox.width * imgW,
                 height: boundingBox.height * imgH
             ).integral
+            
+
+            let padding: CGFloat = min(faceRect.width, faceRect.height) * 0.25
+            faceRect = faceRect.insetBy(dx: -padding, dy: -padding).intersection(
+                CGRect(x: 0, y: 0, width: imgW, height: imgH)
+            )
             
             guard let croppedCG = cgImage.cropping(to: faceRect) else {
                 print("FaceCropper: cropping failed for rect:", faceRect)
@@ -49,11 +56,17 @@ public class FaceCropper {
                 return
             }
             
-            let croppedImage = UIImage(cgImage: croppedCG, scale: image.scale, orientation: image.imageOrientation)
+            let croppedImage = UIImage(
+                cgImage: croppedCG,
+                scale: image.scale,
+                orientation: image.imageOrientation
+            )
+            
+            print("FaceCropper: cropped face rect: \(faceRect)")
             completion(croppedImage, faceRect)
         }
         
-        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        let handler = VNImageRequestHandler(cgImage: cgImage, orientation: .up, options: [:])
         do {
             try handler.perform([request])
         } catch {
@@ -62,4 +75,3 @@ public class FaceCropper {
         }
     }
 }
-
