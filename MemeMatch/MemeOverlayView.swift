@@ -104,12 +104,12 @@ struct MemeOverlayView: View {
         template.draw(in: CGRect(origin: .zero, size: tplSize))
         
         
-        let faceWidth = tplSize.width * 0.45
+        let faceWidth = tplSize.width * 0.48
         let faceHeight = faceWidth * (face.size.height / max(face.size.width, 1))
         
        
-        let centerX = tplSize.width * 0.50
-        let centerY = tplSize.height * 0.59
+        let centerX = tplSize.width * 0.53
+        let centerY = tplSize.height * 0.50
         
         let destRect = CGRect(x: centerX - faceWidth/2, y: centerY - faceHeight/2, width: faceWidth, height: faceHeight)
         
