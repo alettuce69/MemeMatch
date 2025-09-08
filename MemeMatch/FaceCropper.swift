@@ -4,69 +4,55 @@
 //
 //  Created by Gautham Dinakaran on 8/9/25.
 //
-
 import Foundation
 import Vision
 import UIKit
 
 public class FaceCropper {
     public static func cropFace(from image: UIImage, completion: @escaping (UIImage?, CGRect?) -> Void) {
-        guard let cgImage = image.cgImage else {
-            print("FaceCropper: invalid input image")
+        guard let cg = image.cgImage else {
+            print("FaceCropper: image has no cgImage")
             completion(nil, nil)
             return
         }
         
         let request = VNDetectFaceRectanglesRequest { request, error in
-            if let error = error {
-                print("FaceCropper: VN request error:", error.localizedDescription)
+            if let err = error {
+                print("FaceCropper: VN request error:", err.localizedDescription)
                 completion(nil, nil)
                 return
             }
             
-            guard let results = request.results as? [VNFaceObservation],
-                  let firstFace = results.first else {
+            guard let observations = request.results as? [VNFaceObservation],
+                  let firstFace = observations.first else {
                 print("FaceCropper: no faces detected")
                 completion(nil, nil)
                 return
             }
             
-        
+            // Convert normalized rect (0–1) into pixel coordinates
             let boundingBox = firstFace.boundingBox
-            let imgW = CGFloat(cgImage.width)
-            let imgH = CGFloat(cgImage.height)
-            
-
-            var faceRect = CGRect(
-                x: boundingBox.origin.x * imgW,
-                y: (1 - boundingBox.origin.y - boundingBox.height) * imgH,
-                width: boundingBox.width * imgW,
-                height: boundingBox.height * imgH
-            ).integral
-            
-
-            let padding: CGFloat = min(faceRect.width, faceRect.height) * 0.25
-            faceRect = faceRect.insetBy(dx: -padding, dy: -padding).intersection(
-                CGRect(x: 0, y: 0, width: imgW, height: imgH)
+            let width = CGFloat(cg.width)
+            let height = CGFloat(cg.height)
+            let rect = CGRect(
+                x: boundingBox.origin.x * width,
+                y: (1 - boundingBox.origin.y - boundingBox.height) * height,
+                width: boundingBox.width * width,
+                height: boundingBox.height * height
             )
             
-            guard let croppedCG = cgImage.cropping(to: faceRect) else {
-                print("FaceCropper: cropping failed for rect:", faceRect)
+            // Crop face region
+            if let croppedCG = cg.cropping(to: rect) {
+                let croppedImage = UIImage(cgImage: croppedCG, scale: image.scale, orientation: image.imageOrientation)
+                print("FaceCropper: Cropped face rect = \(rect)")
+                completion(croppedImage, rect)
+            } else {
+                print("FaceCropper: cropping failed")
                 completion(nil, nil)
-                return
             }
-            
-            let croppedImage = UIImage(
-                cgImage: croppedCG,
-                scale: image.scale,
-                orientation: image.imageOrientation
-            )
-            
-            print("FaceCropper: cropped face rect: \(faceRect)")
-            completion(croppedImage, faceRect)
         }
         
-        let handler = VNImageRequestHandler(cgImage: cgImage, orientation: .up, options: [:])
+        let handler = VNImageRequestHandler(cgImage: cg, options: [:])
         do {
             try handler.perform([request])
         } catch {
